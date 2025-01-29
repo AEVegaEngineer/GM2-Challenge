@@ -14,3 +14,19 @@ export const getItem = async (request: Request, h: ResponseToolkit) => {
     return h.response({ message: 'Internal server error' }).code(500);
   }
 };
+
+export const createItem = async (request: Request, h: ResponseToolkit) => {
+  try {
+    const { name, price } = request.payload as { name: string; price: number };
+    
+    if (!name || typeof price !== 'number') {
+      return h.response({ message: 'Invalid input' }).code(400);
+    }
+
+    const newItem = await ItemService.createItem({ name, price });
+    return h.response(newItem).code(201);
+  } catch (error) {
+    console.error('Error creating item:', error);
+    return h.response({ message: 'Internal server error' }).code(500);
+  }
+};
