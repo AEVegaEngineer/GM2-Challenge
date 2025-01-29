@@ -1,6 +1,16 @@
 import { Request, ResponseToolkit } from '@hapi/hapi';
 import * as ItemService from './service';
 
+export const listItems = async (request: Request, h: ResponseToolkit) => {
+  try {
+    const items = await ItemService.getAllItems();
+    return items;
+  } catch (error) {
+    console.error('Error fetching items:', error);
+    return h.response({ message: 'Internal server error' }).code(500);
+  }
+};
+
 export const getItem = async (request: Request, h: ResponseToolkit) => {
   const id = request.params.id;
   try {

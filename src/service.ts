@@ -1,5 +1,9 @@
 import { db } from './db';
 
+export const getAllItems = async () => {
+  return await db('items').select('*');
+};
+
 export const getItemById = async (id: string) => {
   return await db('items').where('id', id).first();
 };

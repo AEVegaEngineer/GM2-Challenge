@@ -12,6 +12,12 @@ export const defineRoutes = (server: Server) => {
 
   server.route({
     method: "GET",
+    path: "/items",
+    handler: ItemController.listItems,
+  });
+
+  server.route({
+    method: "GET",
     path: "/items/{id}",
     handler: ItemController.getItem,
   });
