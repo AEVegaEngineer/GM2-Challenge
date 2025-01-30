@@ -1,5 +1,6 @@
 import { Server } from '@hapi/hapi';
 import * as ItemController from './controller';
+import { validateCreateItem, validateUpdateItem } from './validations';
 
 export const defineRoutes = (server: Server) => {
   server.route({
@@ -25,12 +26,18 @@ export const defineRoutes = (server: Server) => {
   server.route({
     method: 'POST',
     path: '/items',
+    options: {
+      pre: [{ method: validateCreateItem }]
+    },
     handler: ItemController.createItem
   });
 
   server.route({
     method: 'PUT',
     path: '/items/{id}',
+    options: {
+      pre: [{ method: validateUpdateItem }]
+    },
     handler: ItemController.updateItem
   });
 
