@@ -1,34 +1,45 @@
-# Bienvenido al coding-interview-backend-level-3
+# Coding-interview-backend-level-3 resuelto
 
-## Descripción
-Este proyecto es una API REST que permite realizar operaciones CRUD sobre una entidad de tipo `Item`.
+## Instrucciones para ejecutar y probar el proyecto usando Dev Containers en VSCode
 
-La entidad tiene 3 campos: `id`, `name` y `price`.
+### Requisitos previos
 
-Tu tarea es completar la implementación de toda la funcionalidad de forma tal de que los tests e2e pasen exitosamente.
+- Visual Studio Code instalado
+- Extensión "Remote - Containers" de VSCode instalada
+- Docker Desktop instalado y en ejecución
 
-### Que puedes hacer: 
-- ✅ Modificar el código fuente y agregar nuevas clases, métodos, campos, etc.
-- ✅ Cambiar dependencias, agregar nuevas, etc.
-- ✅ Modificar la estructura del proyecto (/src/** es todo tuyo)
-- ✅ Elegir una base de datos
-- ✅ Elegir un framework web
-- ✅ Cambiar la definición del .devContainer
+### Configuración del entorno de desarrollo
 
+1. Abre el proyecto en Visual Studio Code.
 
-### Que **no** puedes hacer:
-- ❌ No puedes modificar el archivo original /e2e/index.test.ts (pero puedes crear otros e2e test si lo deseas)
-- ❌ El proyecto debe usar Typescript 
-- ❌ Estresarte 🤗
+2. Asegúrate de que Docker Desktop esté en ejecución.
 
+3. En la esquina inferior izquierda de VSCode, haz clic en el icono verde "><" o presiona F1 y busca "Remote-Containers: Reopen in Container".
 
-## Pasos para comenzar
-1. Haz un fork usando este repositorio como template
-2. Clona el repositorio en tu máquina
-3. Realiza los cambios necesarios para que los tests pasen
-4. Sube tus cambios a tu repositorio
-5. Avísanos que has terminado
-6. ???
-7. PROFIT
+4. VSCode reconstruirá y abrirá el proyecto en un contenedor. Este proceso puede tardar unos minutos la primera vez.
 
-### Cualquier duda contactarme a https://www.linkedin.com/in/andreujuan/
+## Ejecutar el proyecto
+
+Una vez que el contenedor esté en funcionamiento:
+
+1. Abre una nueva terminal en VSCode (Terminal -> New Terminal).
+
+2. Ejecuta el siguiente comando para iniciar el servidor de desarrollo: `npm run dev`
+
+3. El servidor debería estar ahora en funcionamiento y accesible.
+
+## Ejecutar pruebas
+
+Para ejecutar las pruebas del proyecto:
+
+1. En la terminal de VSCode dentro del contenedor, ejecuta: `npm run test`
+
+2. Esto ejecutará todas las pruebas configuradas en el proyecto.
+
+## Notas adicionales
+
+- Si necesitas detener el servidor, puedes usar Ctrl+C en la terminal.
+- Para salir del contenedor y volver a tu entorno local, haz clic en el botón "><" en la esquina inferior izquierda y selecciona "Reopen folder locally".
+- Si realizas cambios en la configuración del contenedor, es posible que necesites reconstruirlo. Puedes hacerlo seleccionando "Rebuild Container" en el menú del botón "><".
+
+# Muy agradecido por la oportunidad.
