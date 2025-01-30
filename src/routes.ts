@@ -29,6 +29,12 @@ export const defineRoutes = (server: Server) => {
   });
 
   server.route({
+    method: 'PUT',
+    path: '/items/{id}',
+    handler: ItemController.updateItem
+  });
+
+  server.route({
     method: 'DELETE',
     path: '/items/{id}',
     handler: ItemController.deleteItem

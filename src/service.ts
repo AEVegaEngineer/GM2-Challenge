@@ -13,6 +13,11 @@ export const createItem = async (item: { name: string; price: number }) => {
   return newItem;
 };
 
+export const updateItem = async (id: string, item: { name: string; price: number }) => {
+  const [updatedItem] = await db('items').where('id', id).update(item).returning('*');
+  return updatedItem;
+};
+
 export const deleteItemById = async (id: string) => {
   return await db('items').where('id', id).del();
 };

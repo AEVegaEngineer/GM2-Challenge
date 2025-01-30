@@ -41,6 +41,26 @@ export const createItem = async (request: Request, h: ResponseToolkit) => {
   }
 };
 
+export const updateItem = async (request: Request, h: ResponseToolkit) => {
+  const id = request.params.id;
+  try {
+    const { name, price } = request.payload as { name: string; price: number };
+    
+    if (!name || typeof price !== 'number') {
+      return h.response({ message: 'Invalid input' }).code(400);
+    }
+
+    const updatedItem = await ItemService.updateItem(id, { name, price });
+    if (!updatedItem) {
+      return h.response({ message: 'Item not found' }).code(404);
+    }
+    return updatedItem;
+  } catch (error) {
+    console.error('Error updating item:', error);
+    return h.response({ message: 'Internal server error' }).code(500);
+  }
+};
+
 export const deleteItem = async (request: Request, h: ResponseToolkit) => {
   const id = request.params.id;
   try {
