@@ -38,6 +38,59 @@ Para ejecutar las pruebas del proyecto:
 
 2. Esto ejecutará todas las pruebas configuradas en el proyecto.
 
+## Endpoints para pruebas locales al iniciar el servidor en desarrollo
+
+1. ping: 
+```
+curl --location 'http://localhost:3000/ping'
+```
+
+2. Create Item: 
+```
+curl --location 'http://localhost:3000/items' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "The third item",
+  "price": 30.31
+}'
+```
+
+3. Get All Items: 
+```
+curl --location 'http://localhost:3000/items'
+```
+
+4. Get Item by ID: 
+```
+curl --location 'http://localhost:3000/items/7'
+```
+
+5. Update Item
+```
+curl --location --request PUT 'http://localhost:3000/items/13' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Item 13 Updated",
+    "price": 11.00
+}'
+```
+
+6. Delete Item
+```
+curl --location --request DELETE 'http://localhost:3000/items/1' \
+--header 'Content-Type: application/json' \
+--data '{
+}'
+```
+
+7. Wipe All Items Data (Util para limpiar la base de datos antes de ejecutar el script de pruebas)
+```
+curl --location --request DELETE 'http://localhost:3000/items' \
+--header 'Content-Type: application/json' \
+--data '{
+}'
+```
+
 ## Notas adicionales
 
 - Si necesitas detener el servidor, puedes usar Ctrl+C en la terminal.

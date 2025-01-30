@@ -14,6 +14,10 @@ const itemSchema = Joi.object({
   }),
 });
 
+export const itemIdSchema = Joi.object({
+  id: Joi.number().integer().positive().required(),
+});
+
 const validateItem = (
   request: Request,
   h: ResponseToolkit,
@@ -39,4 +43,21 @@ export const validateCreateItem = (request: Request, h: ResponseToolkit) => {
 
 export const validateUpdateItem = (request: Request, h: ResponseToolkit) => {
   return validateItem(request, h, itemSchema);
+};
+
+export const validateItemId = (request: Request, h: ResponseToolkit) => {
+  const { error } = itemIdSchema.validate(request.params, {
+    abortEarly: false,
+  });
+
+  if (error) {
+    const errors = error.details.map((detail) => ({
+      field: detail.context?.key,
+      message: detail.message,
+    }));
+
+    return h.response({ errors }).code(400).takeover();
+  }
+
+  return h.continue;
 };
