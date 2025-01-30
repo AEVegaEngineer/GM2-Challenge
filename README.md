@@ -7,6 +7,8 @@
 - Visual Studio Code instalado
 - Extensión "Remote - Containers" de VSCode instalada
 - Docker Desktop instalado y en ejecución
+- Clonar el repositorio
+- Instalar las dependencias ejecutando: `npm install`
 
 ### Configuración del entorno de desarrollo
 
