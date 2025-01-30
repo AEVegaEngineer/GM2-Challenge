@@ -1,3 +1,4 @@
+import { getEmojiPrefix } from '../src/helpers'
 import { initializeServer } from '../src/server'
 import { Server } from '@hapi/hapi'
 
@@ -11,6 +12,10 @@ describe('E2E Tests', () => {
 
     beforeEach(async () => {
         server = await initializeServer()
+        await server.inject({
+            method: 'DELETE',
+            url: '/items'
+        })
     })
 
     it('should get a response with status code 200', async () => {
@@ -46,10 +51,11 @@ describe('E2E Tests', () => {
                 method: 'GET',
                 url: '/items'
             })
+            const emoji = getEmojiPrefix(response2.result![0].name)
             expect(response2.statusCode).toBe(200)
             expect(response2.result).toEqual([{
                 id: expect.any(Number),
-                name: 'Item 1',
+                name: `${emoji}Item 1`,
                 price: 10
             }])
         })
@@ -63,10 +69,11 @@ describe('E2E Tests', () => {
                     price: 10
                 }
             })
+            const emoji = getEmojiPrefix(response.result!.name)
             expect(response.statusCode).toBe(201)
             expect(response.result).toEqual({
                 id: expect.any(Number),
-                name: 'Item 1',
+                name: `${emoji}Item 1`,
                 price: 10
             })
 
@@ -74,11 +81,12 @@ describe('E2E Tests', () => {
                 method: 'GET',
                 url: `/items/${response.result!.id}`
             })
+            const emoji2 = getEmojiPrefix((response2.result! as Item).name)
 
             expect(response2.statusCode).toBe(200)
             expect(response2.result).toEqual({
                 id: expect.any(Number),
-                name: 'Item 1',
+                name: `${emoji2}Item 1`,
                 price: 10
             })
         })
@@ -103,10 +111,11 @@ describe('E2E Tests', () => {
                     price: 20
                 }
             })
+            const emoji = getEmojiPrefix((response.result! as Item).name)
             expect(response.statusCode).toBe(200)
             expect(response.result).toEqual({
                 id: createdItem!.id,
-                name: 'Item 1 updated',
+                name: `${emoji}Item 1 updated`,
                 price: 20
             })
 
@@ -114,10 +123,11 @@ describe('E2E Tests', () => {
                 method: 'GET',
                 url: `/items/${createdItem!.id}`
             })
+            const emoji2 = getEmojiPrefix((response2.result! as Item).name)
             expect(response2.statusCode).toBe(200)
             expect(response2.result).toEqual({
                 id: createdItem!.id,
-                name: 'Item 1 updated',
+                name: `${emoji2}Item 1 updated`,
                 price: 20
             })
         })
