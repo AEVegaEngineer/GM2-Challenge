@@ -40,3 +40,17 @@ export const createItem = async (request: Request, h: ResponseToolkit) => {
     return h.response({ message: 'Internal server error' }).code(500);
   }
 };
+
+export const deleteItem = async (request: Request, h: ResponseToolkit) => {
+  const id = request.params.id;
+  try {
+    const deletedCount = await ItemService.deleteItemById(id);
+    if (deletedCount === 0) {
+      return h.response({ message: 'Item not found' }).code(404);
+    }
+    return h.response().code(204);
+  } catch (error) {
+    console.error('Error deleting item:', error);
+    return h.response({ message: 'Internal server error' }).code(500);
+  }
+};

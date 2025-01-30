@@ -1,30 +1,36 @@
-import { Server } from "@hapi/hapi";
-import * as ItemController from "./controller";
+import { Server } from '@hapi/hapi';
+import * as ItemController from './controller';
 
 export const defineRoutes = (server: Server) => {
   server.route({
-    method: "GET",
-    path: "/ping",
+    method: 'GET',
+    path: '/ping',
     handler: async (request, h) => {
       return { ok: true };
-    },
+    }
   });
 
   server.route({
-    method: "GET",
-    path: "/items",
-    handler: ItemController.listItems,
+    method: 'GET',
+    path: '/items',
+    handler: ItemController.listItems
   });
 
   server.route({
-    method: "GET",
-    path: "/items/{id}",
-    handler: ItemController.getItem,
+    method: 'GET',
+    path: '/items/{id}',
+    handler: ItemController.getItem
   });
 
   server.route({
-    method: "POST",
-    path: "/items",
-    handler: ItemController.createItem,
+    method: 'POST',
+    path: '/items',
+    handler: ItemController.createItem
+  });
+
+  server.route({
+    method: 'DELETE',
+    path: '/items/{id}',
+    handler: ItemController.deleteItem
   });
 };
