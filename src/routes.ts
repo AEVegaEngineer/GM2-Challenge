@@ -39,4 +39,10 @@ export const defineRoutes = (server: Server) => {
     path: '/items/{id}',
     handler: ItemController.deleteItem
   });
+
+  server.route({
+    method: 'DELETE',
+    path: '/items',
+    handler: ItemController.wipeItems
+  });
 };
