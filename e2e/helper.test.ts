@@ -1,5 +1,3 @@
-// src/__tests__/helpers.test.ts or src/helpers.test.ts
-
 import {
   addEmojiPrefix,
   getEmojiPrefix,
